@@ -14,7 +14,7 @@ public class BodegaService {
     @Autowired
     private BodegaRepository bodegaRepository;
 
-    public List<EntityBodega> listarTodas() {
+    public List<EntityBodega> listarTodos() {
         return bodegaRepository.findAll();
     }
 
@@ -30,16 +30,9 @@ public class BodegaService {
         bodegaRepository.deleteById(id);
     }
 
-    public EntityBodega actualizar(EntityBodega bodega) {
-        if (bodegaRepository.existsById(bodega.getId())) {
-            return bodegaRepository.save(bodega);
-        }
-        return null;
-    }
-
-    public Integer obtenerStockActual(Integer productoId) {
+    public Integer obtenerStockMin(Integer productoId) {
         Optional<EntityBodega> bodega = bodegaRepository.findByProductoProductoId(productoId);
-        return bodega.map(EntityBodega::getStockAct).orElse(null);
+        return bodega.map(EntityBodega::getStockMin).orElse(null);
     }
 
     public List<EntityBodega> obtenerProductosConStockBajo() {
@@ -48,6 +41,6 @@ public class BodegaService {
 
     public Boolean verificarDisponibilidad(Integer productoId, Integer cantidad) {
         Optional<EntityBodega> bodega = bodegaRepository.findByProductoProductoId(productoId);
-        return bodega.map(b -> b.getStockAct() >= cantidad).orElse(false);
+        return bodega.map(b -> b.getStockMax() >= cantidad).orElse(false);
     }
 }

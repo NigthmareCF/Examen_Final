@@ -28,7 +28,7 @@ public class BodegaController {
 
     @GetMapping
     public ResponseEntity<List<BodegaDTO>> obtenerTodos() {
-        List<EntityBodega> entidades = bodegaService.listarTodas();
+        List<EntityBodega> entidades = bodegaService.listarTodos();
         List<BodegaDTO> dtos = entidades.stream()
                 .map(this::convertirADTO)
                 .collect(Collectors.toList());
@@ -38,11 +38,10 @@ public class BodegaController {
     @GetMapping("/{id}")
     public ResponseEntity<BodegaDTO> obtenerPorId(@PathVariable Integer id) {
         Optional<EntityBodega> optionalBodega = bodegaService.buscarPorId(id);
-        if (optionalBodega.isPresent()) {
-            return ResponseEntity.ok(convertirADTO(optionalBodega.get()));
-        } else {
+        if (optionalBodega.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok(convertirADTO(optionalBodega.get()));
     }
 
     @PostMapping
@@ -63,18 +62,14 @@ public class BodegaController {
             @RequestBody BodegaDTO bodegaDTO) {
         try {
             Optional<EntityBodega> optionalBodega = bodegaService.buscarPorId(id);
-            if (!optionalBodega.isPresent()) {
+            if (optionalBodega.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
             
-            bodegaDTO.setId(id);
+            bodegaDTO.setBodegaId(id);
             EntityBodega entidad = convertirAEntidad(bodegaDTO);
-            EntityBodega actualizada = bodegaService.actualizar(entidad);
-            if (actualizada != null) {
-                return ResponseEntity.ok(convertirADTO(actualizada));
-            } else {
-                return ResponseEntity.notFound().build();
-            }
+            EntityBodega actualizada = bodegaService.guardar(entidad);
+            return ResponseEntity.ok(convertirADTO(actualizada));
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
@@ -84,7 +79,7 @@ public class BodegaController {
     public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
         try {
             Optional<EntityBodega> existente = bodegaService.buscarPorId(id);
-            if (!existente.isPresent()) {
+            if (existente.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
             bodegaService.eliminar(id);
@@ -95,9 +90,9 @@ public class BodegaController {
     }
 
     @GetMapping("/producto/{productoId}/stock")
-    public ResponseEntity<Integer> obtenerStockActual(@PathVariable Integer productoId) {
+    public ResponseEntity<Integer> obtenerStockMin(@PathVariable Integer productoId) {
         try {
-            Integer stock = bodegaService.obtenerStockActual(productoId);
+            Integer stock = bodegaService.obtenerStockMin(productoId);
             if (stock != null) {
                 return ResponseEntity.ok(stock);
             } else {
@@ -132,9 +127,8 @@ public class BodegaController {
 
     private BodegaDTO convertirADTO(EntityBodega entidad) {
         BodegaDTO dto = new BodegaDTO();
-        dto.setId(entidad.getId());
+        dto.setBodegaId(entidad.getBodegaId());
         dto.setProductoId(entidad.getProducto() != null ? entidad.getProducto().getProductoId() : null);
-        dto.setStockAct(entidad.getStockAct());
         dto.setStockMin(entidad.getStockMin());
         dto.setStockMax(entidad.getStockMax());
         return dto;
@@ -143,13 +137,12 @@ public class BodegaController {
     
     private EntityBodega convertirAEntidad(BodegaDTO dto) {
         EntityBodega entidad = new EntityBodega();
-        entidad.setId(dto.getId());
+        entidad.setBodegaId(dto.getBodegaId());
         if (dto.getProductoId() != null) {
             EntityProducto producto = new EntityProducto();
             producto.setProductoId(dto.getProductoId());
             entidad.setProducto(producto);
         }
-        entidad.setStockAct(dto.getStockAct());
         entidad.setStockMin(dto.getStockMin());
         entidad.setStockMax(dto.getStockMax());
         return entidad;

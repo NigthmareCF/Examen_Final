@@ -22,6 +22,18 @@ public class ClienteService {
         return clienteRepository.findById(id);
     }
 
+    public Optional<EntityCliente> buscarPorNit(String nit) {
+        return clienteRepository.findByNit(nit);
+    }
+
+    public Optional<EntityCliente> buscarPorDpi(Long dpi) {
+        return clienteRepository.findByDPI(dpi);
+    }
+
+    public List<EntityCliente> buscarPorNombre(String nombre) {
+        return clienteRepository.findByNombre(nombre);
+    }
+
     public EntityCliente guardar(EntityCliente cliente) {
         return clienteRepository.save(cliente);
     }

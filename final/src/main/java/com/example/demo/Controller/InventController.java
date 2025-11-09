@@ -28,8 +28,8 @@ public class InventController {
     private BodegaService bodegaService;
 
     @GetMapping
-    public ResponseEntity<List<InventDTO>> getAllInvents() {
-        List<EntityInvent> invents = inventService.findAll();
+    public ResponseEntity<List<InventDTO>> listarTodos() {
+        List<EntityInvent> invents = inventService.listarTodos();
         List<InventDTO> inventDTOs = invents.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
@@ -37,37 +37,37 @@ public class InventController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InventDTO> getInventById(@PathVariable Integer id) {
-        return inventService.findById(id)
+    public ResponseEntity<InventDTO> obtenerPorId(@PathVariable Integer id) {
+        return inventService.buscarPorId(id)
                 .map(this::convertToDTO)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<InventDTO> createInvent(@RequestBody InventDTO inventDTO) {
+    public ResponseEntity<InventDTO> crear(@RequestBody InventDTO inventDTO) {
         EntityInvent invent = convertToEntity(inventDTO);
-        EntityInvent savedInvent = inventService.save(invent);
+        EntityInvent savedInvent = inventService.guardar(invent);
         return ResponseEntity.ok(convertToDTO(savedInvent));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InventDTO> updateInvent(@PathVariable Integer id, @RequestBody InventDTO inventDTO) {
-        if (!inventService.findById(id).isPresent()) {
+    public ResponseEntity<InventDTO> actualizar(@PathVariable Integer id, @RequestBody InventDTO inventDTO) {
+        if (inventService.buscarPorId(id).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         EntityInvent invent = convertToEntity(inventDTO);
         invent.setInventId(id);
-        EntityInvent updatedInvent = inventService.save(invent);
+        EntityInvent updatedInvent = inventService.guardar(invent);
         return ResponseEntity.ok(convertToDTO(updatedInvent));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteInvent(@PathVariable Integer id) {
-        if (!inventService.findById(id).isPresent()) {
+    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
+        if (inventService.buscarPorId(id).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        inventService.deleteById(id);
+        inventService.eliminar(id);
         return ResponseEntity.ok().build();
     }
 
@@ -83,11 +83,11 @@ public class InventController {
         EntityInvent invent = new EntityInvent();
         invent.setInventId(dto.getInventId());
 
-        EntityStockAct stockAct = stockActService.findById(dto.getIdStockAct())
+        EntityStockAct stockAct = stockActService.buscarPorId(dto.getIdStockAct())
                 .orElseThrow(() -> new RuntimeException("StockAct not found"));
         invent.setStockAct(stockAct);
 
-        EntityBodega bodega = bodegaService.findById(dto.getIdBodega())
+        EntityBodega bodega = bodegaService.buscarPorId(dto.getIdBodega())
                 .orElseThrow(() -> new RuntimeException("Bodega not found"));
         invent.setBodega(bodega);
 

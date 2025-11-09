@@ -14,19 +14,19 @@ public class InventService {
     @Autowired
     private InventRepository inventRepository;
 
-    public List<EntityInvent> findAll() {
+    public List<EntityInvent> listarTodos() {
         return inventRepository.findAll();
     }
 
-    public Optional<EntityInvent> findById(Integer id) {
+    public Optional<EntityInvent> buscarPorId(Integer id) {
         return inventRepository.findById(id);
     }
 
-    public EntityInvent save(EntityInvent invent) {
+    public EntityInvent guardar(EntityInvent invent) {
         return inventRepository.save(invent);
     }
 
-    public void deleteById(Integer id) {
+    public void eliminar(Integer id) {
         inventRepository.deleteById(id);
     }
 }

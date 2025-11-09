@@ -9,7 +9,6 @@ import com.example.demo.DTO.ClienteDTO;
 import com.example.demo.Entity.EntityCliente;
 import com.example.demo.Service.ClienteService;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -49,21 +48,27 @@ public class ClienteController {
     
     @GetMapping("/nit/{nit}")
     public ResponseEntity<ClienteDTO> buscarPorNit(@PathVariable String nit) {
-        return ResponseEntity.notFound().build();
+        Optional<EntityCliente> optEntity = clienteService.buscarPorNit(nit);
+        if (optEntity.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(convertirADTO(optEntity.get()));
     }
 
     
     @GetMapping("/dpi/{dpi}")
-    public ResponseEntity<ClienteDTO> buscarPorDpi(@PathVariable Integer dpi) {
-
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<ClienteDTO> buscarPorDpi(@PathVariable Long dpi) {
+        Optional<EntityCliente> optEntity = clienteService.buscarPorDpi(dpi);
+        if (optEntity.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(convertirADTO(optEntity.get()));
     }
 
 
     @GetMapping("/buscar")
     public ResponseEntity<List<ClienteDTO>> buscarPorNombre(@RequestParam String nombre) {
-    
-        List<EntityCliente> entidades = Collections.emptyList();
+        List<EntityCliente> entidades = clienteService.buscarPorNombre(nombre);
         List<ClienteDTO> dtos = entidades.stream()
                 .map(this::convertirADTO)
                 .collect(Collectors.toList());
@@ -126,7 +131,7 @@ public class ClienteController {
         dto.setNombre(entidad.getNombre());
         dto.setDPI(entidad.getDPI());
         dto.setTelefono(entidad.getTelefono());
-        dto.setDireccion(entidad.getDireccion());
+        dto.setNit(entidad.getNit());
         return dto;
     }
 
@@ -136,7 +141,7 @@ public class ClienteController {
         entidad.setNombre(dto.getNombre());
         entidad.setDPI(dto.getDPI());
         entidad.setTelefono(dto.getTelefono());
-        entidad.setDireccion(dto.getDireccion());
+        entidad.setNit(dto.getNit());
         return entidad;
     }
 }
