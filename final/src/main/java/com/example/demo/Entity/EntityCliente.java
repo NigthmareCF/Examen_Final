@@ -15,13 +15,13 @@ public class EntityCliente {
     private String nombre;
 
     @Column(name = "dpi")
-    private Integer DPI;
+    private Long DPI;
 
     @Column(name = "telefono")
-    private Integer telefono;
+    private Long telefono;
 
-    @Column(name = "direccion")
-    private String direccion;
+    @Column(name = "nit")
+    private String nit;
 
     public Integer getClienteId() {
         return clienteId;
@@ -39,27 +39,27 @@ public class EntityCliente {
         this.nombre = nombre;
     }
 
-    public Integer getDPI() {
+    public Long getDPI() {
         return DPI;
     }
 
-    public void setDPI(Integer DPI) {
+    public void setDPI(Long DPI) {
         this.DPI = DPI;
     }
 
-    public Integer getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getNit() {
+        return nit;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setNit(String nit) {
+        this.nit = nit;
     }
 }

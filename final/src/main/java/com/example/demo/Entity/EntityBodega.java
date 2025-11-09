@@ -8,15 +8,12 @@ public class EntityBodega {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "bodegaid")
-    private Integer id;
+    @Column(name = "bodegatid")
+    private Integer bodegaId;
 
     @ManyToOne
-    @JoinColumn(name = "productoid", referencedColumnName = "productoid")
+    @JoinColumn(name = "idproducto")
     private EntityProducto producto;
-
-    @Column(name = "stockact")
-    private Integer stockAct;
 
     @Column(name = "stockmin")
     private Integer stockMin;
@@ -27,12 +24,12 @@ public class EntityBodega {
     public EntityBodega() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getBodegaId() {
+        return bodegaId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBodegaId(Integer bodegaId) {
+        this.bodegaId = bodegaId;
     }
 
     public EntityProducto getProducto() {
@@ -41,14 +38,6 @@ public class EntityBodega {
 
     public void setProducto(EntityProducto producto) {
         this.producto = producto;
-    }
-
-    public Integer getStockAct() {
-        return stockAct;
-    }
-
-    public void setStockAct(Integer stockAct) {
-        this.stockAct = stockAct;
     }
 
     public Integer getStockMin() {
