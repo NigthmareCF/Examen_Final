@@ -14,5 +14,5 @@ instrucciones provisionales para el uso de esta aplicacion:
 9. ejecutar las rutas segun lo que necesite
 10. en caso de tener problemas abrir la aplicacion docker o correr el contenedor de postgres correspondiente
 
-gracias por leer
+gracias por leer <3
 
