@@ -105,13 +105,11 @@ public class InventController {
         EntityInvent entidad = new EntityInvent();
         entidad.setInventId(dto.getInventId());
         
-        // Buscar stockAct
         Optional<EntityStockAct> stockAct = stockActService.buscarPorId(dto.getStockActId());
         if (stockAct.isPresent()) {
             entidad.setStockAct(stockAct.get());
         }
         
-        // Buscar bodega
         Optional<EntityBodega> bodega = bodegaService.buscarPorId(dto.getBodegaId());
         if (bodega.isPresent()) {
             entidad.setBodega(bodega.get());

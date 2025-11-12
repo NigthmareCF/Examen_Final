@@ -26,10 +26,6 @@ public class ProveedorController {
         this.proveedorService = proveedorService;
     }
 
-    /**
-     * Obtener todos los proveedores
-     * GET /api/proveedores
-     */
     @GetMapping
     public ResponseEntity<List<ProveedorDTO>> obtenerTodos() {
         List<EntityProveedor> entidades = proveedorService.listarTodos();
@@ -39,10 +35,6 @@ public class ProveedorController {
         return ResponseEntity.ok(dtos);
     }
 
-    /**
-     * Obtener proveedor por ID
-     * GET /api/proveedores/{id}
-     */
     @GetMapping("/{id}")
     public ResponseEntity<ProveedorDTO> obtenerPorId(@PathVariable Integer id) {
         Optional<EntityProveedor> optEntity = proveedorService.buscarPorId(id);
@@ -52,10 +44,6 @@ public class ProveedorController {
         return ResponseEntity.ok(convertirADTO(optEntity.get()));
     }
 
-    /**
-     * Buscar proveedores por nombre
-     * GET /api/proveedores/buscar?nombre=
-     */
     @GetMapping("/buscar")
     public ResponseEntity<List<ProveedorDTO>> buscarPorNombre(@RequestParam String nombre) {
 
@@ -66,20 +54,12 @@ public class ProveedorController {
         return ResponseEntity.ok(dtos);
     }
 
-    /**
-     * Buscar proveedor por teléfono
-     * GET /api/proveedores/telefono/{telefono}
-     */
     @GetMapping("/telefono/{telefono}")
     public ResponseEntity<ProveedorDTO> buscarPorTelefono(@PathVariable Integer telefono) {
 
         return ResponseEntity.notFound().build();
     }
 
-    /**
-     * Obtener proveedores activos (con productos asociados)
-     * GET /api/proveedores/activos
-     */
     @GetMapping("/activos")
     public ResponseEntity<List<ProveedorDTO>> obtenerActivos() {
 
@@ -90,10 +70,6 @@ public class ProveedorController {
         return ResponseEntity.ok(dtos);
     }
 
-    /**
-     * Crear nuevo proveedor
-     * POST /api/proveedores
-     */
     @PostMapping
     public ResponseEntity<ProveedorDTO> crear(@RequestBody ProveedorDTO proveedorDTO) {
         try {
@@ -106,10 +82,6 @@ public class ProveedorController {
         }
     }
 
-    /**
-     * Actualizar proveedor existente
-     * PUT /api/proveedores/{id}
-     */
     @PutMapping("/{id}")
     public ResponseEntity<ProveedorDTO> actualizar(
             @PathVariable Integer id,
@@ -130,10 +102,6 @@ public class ProveedorController {
         }
     }
 
-    /**
-     * Eliminar proveedor
-     * DELETE /api/proveedores/{id}
-     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
         try {

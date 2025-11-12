@@ -27,10 +27,6 @@ public class ProductoController {
         this.productoService = productoService;
     }
 
-    /**
-     * Obtener todos los productos
-     * GET /api/productos
-     */
     @GetMapping
     public ResponseEntity<List<ProductoDTO>> obtenerTodos() {
         List<EntityProducto> entidades = productoService.listarTodos();
@@ -40,10 +36,6 @@ public class ProductoController {
         return ResponseEntity.ok(dtos);
     }
 
-    /**
-     * Obtener producto por ID
-     * GET /api/productos/{id}
-     */
     @GetMapping("/{id}")
     public ResponseEntity<ProductoDTO> obtenerPorId(@PathVariable Integer id) {
         Optional<EntityProducto> optionalProducto = productoService.buscarPorId(id);
@@ -54,10 +46,6 @@ public class ProductoController {
         }
     }
 
-    /**
-     * Buscar productos por nombre
-     * GET /api/productos/buscar?nombre=
-     */
     @GetMapping("/buscar")
     public ResponseEntity<List<ProductoDTO>> buscarPorNombre(@RequestParam String nombre) {
         List<EntityProducto> entidades = productoService.buscarPorNombreContiene(nombre);
@@ -67,10 +55,6 @@ public class ProductoController {
         return ResponseEntity.ok(dtos);
     }
 
-    /**
-     * Obtener productos por proveedor
-     * GET /api/productos/proveedor/{proveedorId}
-     */
     @GetMapping("/proveedor/{proveedorId}")
     public ResponseEntity<List<ProductoDTO>> obtenerPorProveedor(@PathVariable Integer proveedorId) {
         List<EntityProducto> entidades = productoService.buscarPorProveedorId(proveedorId);
@@ -80,10 +64,6 @@ public class ProductoController {
         return ResponseEntity.ok(dtos);
     }
 
-    /**
-     * Obtener productos por rango de precio
-     * GET /api/productos/precio?min=&max=
-     */
     @GetMapping("/precio")
     public ResponseEntity<List<ProductoDTO>> obtenerPorRangoPrecio(
             @RequestParam BigDecimal min,
@@ -95,10 +75,6 @@ public class ProductoController {
         return ResponseEntity.ok(dtos);
     }
 
-    /**
-     * Obtener productos más vendidos
-     * GET /api/productos/mas-vendidos?limite=10
-     */
     @GetMapping("/mas-vendidos")
     public ResponseEntity<List<ProductoDTO>> obtenerMasVendidos(
             @RequestParam(defaultValue = "10") Integer limite) {
@@ -109,10 +85,6 @@ public class ProductoController {
         return ResponseEntity.ok(dtos);
     }
 
-    /**
-     * Crear nuevo producto
-     * POST /api/productos
-     */
     @PostMapping
     public ResponseEntity<ProductoDTO> crear(@RequestBody ProductoDTO productoDTO) {
         try {
@@ -125,10 +97,6 @@ public class ProductoController {
         }
     }
 
-    /**
-     * Actualizar producto existente
-     * PUT /api/productos/{id}
-     */
     @PutMapping("/{id}")
     public ResponseEntity<ProductoDTO> actualizar(
             @PathVariable Integer id,
@@ -152,10 +120,6 @@ public class ProductoController {
         }
     }
 
-    /**
-     * Eliminar producto
-     * DELETE /api/productos/{id}
-     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
         try {

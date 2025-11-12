@@ -27,10 +27,6 @@ public class VentaDetController {
 
 
 
-    /**
-     * Obtener todos los detalles de venta
-     * GET /api/ventadet
-     */
     @GetMapping
     public ResponseEntity<List<VentaDetDTO>> obtenerTodos() {
         List<EntityVentaDet> entidades = ventaDetService.listarTodos();
@@ -40,10 +36,6 @@ public class VentaDetController {
         return ResponseEntity.ok(dtos);
     }
 
-    /**
-     * Obtener detalle por ID
-     * GET /api/ventadet/{id}
-     */
     @GetMapping("/{id}")
     public ResponseEntity<VentaDetDTO> obtenerPorId(@PathVariable Integer id) {
         Optional<EntityVentaDet> optEntity = ventaDetService.buscarPorId(id);
@@ -53,10 +45,6 @@ public class VentaDetController {
         return ResponseEntity.ok(convertirADTO(optEntity.get()));
     }
 
-    /**
-     * Buscar detalles por ID de venta
-     * GET /api/ventadet/venta/{idVenta}
-     */
     @GetMapping("/venta/{idVenta}")
     public ResponseEntity<List<VentaDetDTO>> obtenerPorVenta(@PathVariable Integer idVenta) {
         List<EntityVentaDet> entidades = ventaDetService.listarPorVenta(idVenta);
@@ -66,10 +54,6 @@ public class VentaDetController {
         return ResponseEntity.ok(dtos);
     }
 
-    /**
-     * Crear nuevo detalle de venta
-     * POST /api/ventadet
-     */
     @PostMapping
     public ResponseEntity<VentaDetDTO> crear(@RequestBody VentaDetDTO ventaDetDTO) {
         try {
@@ -82,10 +66,6 @@ public class VentaDetController {
         }
     }
 
-    /**
-     * Actualizar detalle de venta existente
-     * PUT /api/ventadet/{id}
-     */
     @PutMapping("/{id}")
     public ResponseEntity<VentaDetDTO> actualizar(
             @PathVariable Integer id,
@@ -106,10 +86,6 @@ public class VentaDetController {
         }
     }
 
-    /**
-     * Eliminar detalle de venta
-     * DELETE /api/ventadet/{id}
-     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
         try {

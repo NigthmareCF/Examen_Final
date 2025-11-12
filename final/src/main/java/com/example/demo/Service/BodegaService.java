@@ -49,21 +49,4 @@ public class BodegaService {
         }
         return null;
     }
-
-    // Método comentado - stockAct no existe en la tabla de la base de datos
-    /*public Integer obtenerStockActual(Integer productoId) {
-        Optional<EntityBodega> bodega = bodegaRepository.findByProducto_ProductoId(productoId);
-        return bodega.map(EntityBodega::getStockAct).orElse(null);
-    }*/
-
-    // Método comentado - stockAct no existe en la tabla de la base de datos  
-    /*public List<EntityBodega> obtenerProductosConStockBajo() {
-        return bodegaRepository.findByStockActLessThanStockMin();
-    }*/
-
-    // Método comentado - stockAct no existe en la tabla de la base de datos
-    /*public Boolean verificarDisponibilidad(Integer productoId, Integer cantidad) {
-        Optional<EntityBodega> bodega = bodegaRepository.findByProductoProductoId(productoId);
-        return bodega.map(b -> b.getStockAct() >= cantidad).orElse(false);
-    }*/
 }

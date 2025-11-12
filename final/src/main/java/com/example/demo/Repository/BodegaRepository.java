@@ -8,8 +8,4 @@ import java.util.Optional;
 @Repository
 public interface BodegaRepository extends JpaRepository<EntityBodega, Integer> {
     Optional<EntityBodega> findByProducto_ProductoId(Integer productoId);
-
-    // Método comentado porque stockAct no existe en la nueva estructura
-    // @Query("SELECT b FROM EntityBodega b WHERE b.stockAct < b.stockMin")
-    // List<EntityBodega> findByStockActLessThanStockMin();
 }
