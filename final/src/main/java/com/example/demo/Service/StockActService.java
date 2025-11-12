@@ -19,14 +19,23 @@ public class StockActService {
     }
 
     public Optional<EntityStockAct> buscarPorId(Integer id) {
+        if (id == null) {
+            return Optional.empty();
+        }
         return stockActRepository.findById(id);
     }
 
     public EntityStockAct guardar(EntityStockAct stockAct) {
+        if (stockAct == null) {
+            throw new IllegalArgumentException("StockAct no puede ser null");
+        }
         return stockActRepository.save(stockAct);
     }
 
     public void eliminar(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID no puede ser null");
+        }
         stockActRepository.deleteById(id);
     }
 }

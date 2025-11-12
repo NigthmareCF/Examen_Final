@@ -4,9 +4,7 @@ public class StockActDTO {
 
     private Integer stockActId;
     private Integer compraId;
-    private Integer antidadComp;
-    private Integer VentaId;
-    private Integer cantidadVent;
+    private Integer ventaDetalleId;
 
     public Integer getStockActId() {
         return stockActId;
@@ -16,17 +14,10 @@ public class StockActDTO {
         return compraId;
     }
 
-    public Integer getAntidadComp() {
-        return antidadComp;
+    public Integer getVentaDetalleId() {
+        return ventaDetalleId;
     }
 
-    public Integer getVentaId() {
-        return VentaId;
-    }
-
-    public Integer getCantidadVent() {
-        return cantidadVent;
-    }
     public void setStockActId(Integer stockActId) {
         this.stockActId = stockActId;
     }
@@ -35,16 +26,7 @@ public class StockActDTO {
         this.compraId = compraId;
     }
 
-    public void setAntidadComp(Integer antidadComp) {
-        this.antidadComp = antidadComp;
+    public void setVentaDetalleId(Integer ventaDetalleId) {
+        this.ventaDetalleId = ventaDetalleId;
     }
-
-    public void setVentaId(Integer ventaId) {
-        VentaId = ventaId;
-    }
-
-    public void setCantidadVent(Integer cantidadVent) {
-        this.cantidadVent = cantidadVent;
-    }
-
 }

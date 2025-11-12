@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.math.BigDecimal;
 
 import com.example.demo.Entity.EntityProducto;
 import com.example.demo.Repository.ProductoRepository;
@@ -19,6 +20,9 @@ public class ProductoService {
     }
 
     public Optional<EntityProducto> buscarPorId(Integer id) {
+        if (id == null) {
+            return Optional.empty();
+        }
         return productoRepository.findById(id);
     }
 
@@ -30,7 +34,7 @@ public class ProductoService {
         return productoRepository.findByProveedor_ProveedorId(proveedorId);
     }
 
-    public List<EntityProducto> buscarPorRangoPrecio(Double min, Double max) {
+    public List<EntityProducto> buscarPorRangoPrecio(BigDecimal min, BigDecimal max) {
         return productoRepository.findByPrecioBetween(min, max);
     }
 
@@ -42,17 +46,27 @@ public class ProductoService {
     }
 
     public EntityProducto guardar(EntityProducto producto) {
+        if (producto == null) {
+            throw new IllegalArgumentException("Producto no puede ser null");
+        }
         return productoRepository.save(producto);
     }
 
     public EntityProducto actualizar(EntityProducto producto) {
-        if (productoRepository.existsById(producto.getProductoId())) {
+        if (producto == null || producto.getProductoId() == null) {
+            return null;
+        }
+        Integer productoId = producto.getProductoId();
+        if (productoId != null && productoRepository.existsById(productoId)) {
             return productoRepository.save(producto);
         }
         return null;
     }
 
     public void eliminar(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID no puede ser null");
+        }
         productoRepository.deleteById(id);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.demo.Entity;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "producto")
@@ -15,17 +16,17 @@ public class EntityProducto {
     private String nombre;
 
     @Column(name = "precio")
-    private Double precio;
+    private BigDecimal precio;
 
     @ManyToOne
-    @JoinColumn(name = "proveedorid", referencedColumnName = "proveedorid")
+    @JoinColumn(name = "idproveedor", referencedColumnName = "proveedorid")
     private EntityProveedor proveedor;
 
     @Column(name = "presentacion")
     private String presentacion;
 
     @Column(name = "peso")
-    private Double peso;
+    private BigDecimal peso;
 
     public Integer getProductoId() {
         return productoId;
@@ -43,11 +44,11 @@ public class EntityProducto {
         this.nombre = nombre;
     }
 
-    public Double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
@@ -67,11 +68,11 @@ public class EntityProducto {
         this.presentacion = presentacion;
     }
 
-    public Double getPeso() {
+    public BigDecimal getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(BigDecimal peso) {
         this.peso = peso;
     }
 }

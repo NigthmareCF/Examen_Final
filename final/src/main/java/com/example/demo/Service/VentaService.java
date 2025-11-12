@@ -23,6 +23,9 @@ public class VentaService {
     }
 
     public VentaDTO getById(Integer id) {
+        if (id == null) {
+            return null;
+        }
         Optional<EntityVenta> venta = ventaRepository.findById(id);
         return venta.map(this::convertToDto).orElse(null);
     }
@@ -32,17 +35,27 @@ public class VentaService {
     }
 
     public EntityVenta save(EntityVenta venta) {
+        if (venta == null) {
+            throw new IllegalArgumentException("Venta no puede ser null");
+        }
         return ventaRepository.save(venta);
     }
 
     public EntityVenta update(EntityVenta venta) {
-        if (ventaRepository.existsById(venta.getVentaId())) {
+        if (venta == null || venta.getVentaId() == null) {
+            return null;
+        }
+        Integer ventaId = venta.getVentaId();
+        if (ventaId != null && ventaRepository.existsById(ventaId)) {
             return ventaRepository.save(venta);
         }
         return null;
     }
 
     public void delete(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID no puede ser null");
+        }
         ventaRepository.deleteById(id);
     }
 

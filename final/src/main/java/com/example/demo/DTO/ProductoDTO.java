@@ -1,13 +1,15 @@
 package com.example.demo.DTO;
 
+import java.math.BigDecimal;
+
 public class ProductoDTO {
 
     private Integer productoId;
     private String nombre;
-    private Double precio;
+    private BigDecimal precio;
     private Integer proveedorId;
     private String presentacion;
-    private Double peso;
+    private BigDecimal peso;
 
     public Integer getProductoId() {
         return productoId;
@@ -25,11 +27,11 @@ public class ProductoDTO {
         this.nombre = nombre;
     }
 
-    public Double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
@@ -49,11 +51,11 @@ public class ProductoDTO {
         this.presentacion = presentacion;
     }
 
-    public Double getPeso() {
+    public BigDecimal getPeso() {
         return peso;
     }
 
-    public void setPeso(Double peso) {
+    public void setPeso(BigDecimal peso) {
         this.peso = peso;
     }
 

@@ -1,12 +1,14 @@
 package com.example.demo.DTO;
 
+import java.math.BigDecimal;
+
 public class VentaDetDTO {
 
     private Integer ventaDetalleId;
     private Integer ventaId;
     private Integer productoId;
     private Integer cantidad;
-    private Double total;
+    private BigDecimal total;
 
 
 
@@ -42,11 +44,11 @@ public class VentaDetDTO {
         this.cantidad = cantidad;
     }
 
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 }

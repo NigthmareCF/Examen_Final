@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.DTO.CompraDTO;
 import com.example.demo.Entity.EntityCompra;
 import com.example.demo.Entity.EntityProducto;
+
+import java.math.BigDecimal;
 import com.example.demo.Service.CompraService;
 
 import java.util.Collections;
@@ -60,8 +62,8 @@ public class CompraController {
 
     
     @GetMapping("/total")
-    public ResponseEntity<Double> obtenerTotalCompras() {
-        return ResponseEntity.ok(0.0);
+    public ResponseEntity<BigDecimal> obtenerTotalCompras() {
+        return ResponseEntity.ok(BigDecimal.ZERO);
     }
 
     @GetMapping("/rango")
@@ -79,7 +81,7 @@ public class CompraController {
     @PostMapping
     public ResponseEntity<CompraDTO> crear(@RequestBody CompraDTO compraDTO) {
         try {
-            Double total = compraDTO.getPrecioUnitario() * compraDTO.getCantidad();
+            BigDecimal total = compraDTO.getPrecio().multiply(BigDecimal.valueOf(compraDTO.getCantidad()));
             compraDTO.setTotal(total);
             
             EntityCompra entidad = convertirAEntidad(compraDTO);
@@ -100,7 +102,7 @@ public class CompraController {
                 return ResponseEntity.notFound().build();
             }
             
-            Double total = compraDTO.getPrecioUnitario() * compraDTO.getCantidad();
+            BigDecimal total = compraDTO.getPrecio().multiply(BigDecimal.valueOf(compraDTO.getCantidad()));
             compraDTO.setTotal(total);
             
             compraDTO.setCompraId(id);
@@ -134,7 +136,7 @@ public class CompraController {
         dto.setCompraId(entidad.getCompraId());
         dto.setProductoId(entidad.getProducto().getProductoId());
         dto.setCantidad(entidad.getCantidad());
-        dto.setPrecioUnitario(entidad.getPrecioUnitario());
+        dto.setPrecio(entidad.getPrecio());
         dto.setTotal(entidad.getTotal());
         return dto;
     }
@@ -146,7 +148,7 @@ public class CompraController {
         producto.setProductoId(dto.getProductoId());
         entidad.setProducto(producto);
         entidad.setCantidad(dto.getCantidad());
-        entidad.setPrecioUnitario(dto.getPrecioUnitario());
+        entidad.setPrecio(dto.getPrecio());
         entidad.setTotal(dto.getTotal());
         return entidad;
     }

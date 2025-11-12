@@ -1,6 +1,7 @@
 package com.example.demo.Entity;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ventadetalle")
@@ -16,14 +17,14 @@ public class EntityVentaDet {
     private EntityVenta venta;
 
     @ManyToOne
-    @JoinColumn(name = "productoid", referencedColumnName = "productoid")
+    @JoinColumn(name = "idproducto", referencedColumnName = "productoid")
     private EntityProducto producto;
 
     @Column(name = "cantidad")
     private Integer cantidad;
 
     @Column(name = "total")
-    private Double total;
+    private BigDecimal total;
 
 
 
@@ -59,11 +60,11 @@ public class EntityVentaDet {
         this.cantidad = cantidad;
     }
 
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 }

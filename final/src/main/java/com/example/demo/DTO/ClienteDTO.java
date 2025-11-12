@@ -4,9 +4,9 @@ public class ClienteDTO {
 
     private Integer clienteId;
     private String nombre;
-    private Integer DPI;
+    private Long DPI;
     private Integer telefono;  
-    private String direccion;
+    private String nit;
 
     public Integer getClienteId() {
         return clienteId;
@@ -24,12 +24,12 @@ public class ClienteDTO {
         this.nombre = nombre;
     }
 
-    public Integer getDPI() {
+    public Long getDPI() {
         return DPI;
     }
 
 
-    public void setDPI(Integer DPI) {
+    public void setDPI(Long DPI) {
         this.DPI = DPI;
     }
 
@@ -41,12 +41,12 @@ public class ClienteDTO {
         this.telefono = telefono;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getNit() {
+        return nit;
     } 
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setNit(String nit) {
+        this.nit = nit;
     } 
     
 }

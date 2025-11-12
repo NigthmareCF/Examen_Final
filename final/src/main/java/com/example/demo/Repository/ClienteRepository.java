@@ -8,8 +8,9 @@ import com.example.demo.Entity.EntityCliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<EntityCliente, Integer> {
     List<EntityCliente> findByNombre(String nombre);
-    List<EntityCliente> findByDireccionContainingIgnoreCase(String direccionPart);
+    List<EntityCliente> findByNombreContainingIgnoreCase(String nombrePart);
     List<EntityCliente> findByTelefono(Integer telefono);
-    List<EntityCliente> findByDPI(Integer dpi);
+    List<EntityCliente> findByDPI(Long dpi);
+    List<EntityCliente> findByNit(String nit);
     List<EntityCliente> findByClienteIdIn(List<Integer> ids);
 }

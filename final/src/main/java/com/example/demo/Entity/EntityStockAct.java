@@ -12,18 +12,12 @@ public class EntityStockAct {
     private Integer stockActId;
 
     @ManyToOne
-    @JoinColumn(name = "compraid", referencedColumnName = "compraid")
+    @JoinColumn(name = "idcompra", referencedColumnName = "compraid")
     private EntityCompra compra;
 
-    @Column(name = "cantidadcomp")
-    private Integer antidadComp;
-
     @ManyToOne
-    @JoinColumn(name = "ventaid", referencedColumnName = "ventaid")
-    private EntityVenta venta;
-
-    @Column(name = "cantidadvent")
-    private Integer cantidadVent;
+    @JoinColumn(name = "idventadeta", referencedColumnName = "ventadetalleid")
+    private EntityVentaDet ventaDetalle;
 
     public Integer getStockActId() {
         return stockActId;
@@ -41,27 +35,11 @@ public class EntityStockAct {
         this.compra = compra;
     }
 
-    public Integer getAntidadComp() {
-        return antidadComp;
+    public EntityVentaDet getVentaDetalle() {
+        return ventaDetalle;
     }
 
-    public void setAntidadComp(Integer antidadComp) {
-        this.antidadComp = antidadComp;
-    }
-
-    public EntityVenta getVenta() {
-        return venta;
-    }
-
-    public void setVenta(EntityVenta venta) {
-        this.venta = venta;
-    }
-
-    public Integer getCantidadVent() {
-        return cantidadVent;
-    }
-
-    public void setCantidadVent(Integer cantidadVent) {
-        this.cantidadVent = cantidadVent;
+    public void setVentaDetalle(EntityVentaDet ventaDetalle) {
+        this.ventaDetalle = ventaDetalle;
     }
 }

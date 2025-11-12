@@ -67,7 +67,7 @@ public class BodegaController {
                 return ResponseEntity.notFound().build();
             }
             
-            bodegaDTO.setId(id);
+            bodegaDTO.setBodegaId(id);
             EntityBodega entidad = convertirAEntidad(bodegaDTO);
             EntityBodega actualizada = bodegaService.actualizar(entidad);
             if (actualizada != null) {
@@ -94,7 +94,8 @@ public class BodegaController {
         }
     }
 
-    @GetMapping("/producto/{productoId}/stock")
+    // Método comentado - stockAct no existe en la tabla de la base de datos
+    /*@GetMapping("/producto/{productoId}/stock")
     public ResponseEntity<Integer> obtenerStockActual(@PathVariable Integer productoId) {
         try {
             Integer stock = bodegaService.obtenerStockActual(productoId);
@@ -106,18 +107,20 @@ public class BodegaController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
-    }
+    }*/
 
-    @GetMapping("/stock-bajo")
+    // Método comentado - stockAct no existe en la tabla de la base de datos
+    /*@GetMapping("/stock-bajo")
     public ResponseEntity<List<BodegaDTO>> obtenerStockBajo() {
         List<EntityBodega> entidades = bodegaService.obtenerProductosConStockBajo();
         List<BodegaDTO> dtos = entidades.stream()
                 .map(this::convertirADTO)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
-    }
+    }*/
 
-    @GetMapping("/producto/{productoId}/disponible/{cantidad}")
+    // Método comentado - stockAct no existe en la tabla de la base de datos
+    /*@GetMapping("/producto/{productoId}/disponible/{cantidad}")
     public ResponseEntity<Boolean> verificarDisponibilidad(
             @PathVariable Integer productoId,
             @PathVariable Integer cantidad) {
@@ -127,14 +130,13 @@ public class BodegaController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
-    }
+    }*/
 
 
     private BodegaDTO convertirADTO(EntityBodega entidad) {
         BodegaDTO dto = new BodegaDTO();
-        dto.setId(entidad.getId());
+        dto.setBodegaId(entidad.getBodegaId());
         dto.setProductoId(entidad.getProducto() != null ? entidad.getProducto().getProductoId() : null);
-        dto.setStockAct(entidad.getStockAct());
         dto.setStockMin(entidad.getStockMin());
         dto.setStockMax(entidad.getStockMax());
         return dto;
@@ -143,13 +145,12 @@ public class BodegaController {
     
     private EntityBodega convertirAEntidad(BodegaDTO dto) {
         EntityBodega entidad = new EntityBodega();
-        entidad.setId(dto.getId());
+        entidad.setBodegaId(dto.getBodegaId());
         if (dto.getProductoId() != null) {
             EntityProducto producto = new EntityProducto();
             producto.setProductoId(dto.getProductoId());
             entidad.setProducto(producto);
         }
-        entidad.setStockAct(dto.getStockAct());
         entidad.setStockMin(dto.getStockMin());
         entidad.setStockMax(dto.getStockMax());
         return entidad;

@@ -14,7 +14,7 @@ public class EntityVenta {
     private Integer ventaId;
 
     @Column(name = "fecha")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
 
     @ManyToOne

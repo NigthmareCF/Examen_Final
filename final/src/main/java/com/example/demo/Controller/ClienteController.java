@@ -126,7 +126,7 @@ public class ClienteController {
         dto.setNombre(entidad.getNombre());
         dto.setDPI(entidad.getDPI());
         dto.setTelefono(entidad.getTelefono());
-        dto.setDireccion(entidad.getDireccion());
+        dto.setNit(entidad.getNit());
         return dto;
     }
 
@@ -136,7 +136,7 @@ public class ClienteController {
         entidad.setNombre(dto.getNombre());
         entidad.setDPI(dto.getDPI());
         entidad.setTelefono(dto.getTelefono());
-        entidad.setDireccion(dto.getDireccion());
+        entidad.setNit(dto.getNit());
         return entidad;
     }
 }

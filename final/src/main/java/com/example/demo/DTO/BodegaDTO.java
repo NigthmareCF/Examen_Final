@@ -1,21 +1,20 @@
 package com.example.demo.DTO;
                 
 public class BodegaDTO {
-    private Integer id;
+    private Integer bodegaId;
     private Integer productoId;
-    private Integer stockAct;
     private Integer stockMin;
     private Integer stockMax;
 
     public BodegaDTO() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getBodegaId() {
+        return bodegaId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBodegaId(Integer bodegaId) {
+        this.bodegaId = bodegaId;
     }
 
     public Integer getProductoId() {
@@ -24,14 +23,6 @@ public class BodegaDTO {
 
     public void setProductoId(Integer productoId) {
         this.productoId = productoId;
-    }
-
-    public Integer getStockAct() {
-        return stockAct;
-    }
-
-    public void setStockAct(Integer stockAct) {
-        this.stockAct = stockAct;
     }
 
     public Integer getStockMin() {
