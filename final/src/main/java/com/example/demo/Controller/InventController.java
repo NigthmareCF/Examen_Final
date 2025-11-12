@@ -97,7 +97,11 @@ public class InventController {
         InventDTO dto = new InventDTO();
         dto.setInventId(entidad.getInventId());
         dto.setStockActId(entidad.getStockAct().getStockActId());
+<<<<<<< HEAD
         dto.setBodegaId(entidad.getBodega().getBodegaId());
+=======
+        dto.setBodegaId(entidad.getBodega().getId());
+>>>>>>> e466b743180a3f48424c6e29dc7f3d0352967b7b
         return dto;
     }
 
