@@ -19,6 +19,9 @@ public class VentaDetService {
     }
 
     public Optional<EntityVentaDet> buscarPorId(Integer id) {
+        if (id == null) {
+            return Optional.empty();
+        }
         return ventaDetRepository.findById(id);
     }
 
@@ -27,10 +30,16 @@ public class VentaDetService {
     }
 
     public EntityVentaDet guardar(EntityVentaDet ventaDet) {
+        if (ventaDet == null) {
+            throw new IllegalArgumentException("VentaDet no puede ser null");
+        }
         return ventaDetRepository.save(ventaDet);
     }
 
     public void eliminar(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID no puede ser null");
+        }
         ventaDetRepository.deleteById(id);
     }
 }

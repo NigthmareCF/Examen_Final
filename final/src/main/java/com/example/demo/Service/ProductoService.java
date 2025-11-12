@@ -20,6 +20,9 @@ public class ProductoService {
     }
 
     public Optional<EntityProducto> buscarPorId(Integer id) {
+        if (id == null) {
+            return Optional.empty();
+        }
         return productoRepository.findById(id);
     }
 
@@ -43,17 +46,27 @@ public class ProductoService {
     }
 
     public EntityProducto guardar(EntityProducto producto) {
+        if (producto == null) {
+            throw new IllegalArgumentException("Producto no puede ser null");
+        }
         return productoRepository.save(producto);
     }
 
     public EntityProducto actualizar(EntityProducto producto) {
-        if (productoRepository.existsById(producto.getProductoId())) {
+        if (producto == null || producto.getProductoId() == null) {
+            return null;
+        }
+        Integer productoId = producto.getProductoId();
+        if (productoId != null && productoRepository.existsById(productoId)) {
             return productoRepository.save(producto);
         }
         return null;
     }
 
     public void eliminar(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID no puede ser null");
+        }
         productoRepository.deleteById(id);
     }
 }

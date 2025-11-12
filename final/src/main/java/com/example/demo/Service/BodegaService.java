@@ -19,19 +19,32 @@ public class BodegaService {
     }
 
     public Optional<EntityBodega> buscarPorId(Integer id) {
+        if (id == null) {
+            return Optional.empty();
+        }
         return bodegaRepository.findById(id);
     }
 
     public EntityBodega guardar(EntityBodega bodega) {
+        if (bodega == null) {
+            throw new IllegalArgumentException("Bodega no puede ser null");
+        }
         return bodegaRepository.save(bodega);
     }
 
     public void eliminar(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID no puede ser null");
+        }
         bodegaRepository.deleteById(id);
     }
 
     public EntityBodega actualizar(EntityBodega bodega) {
-        if (bodegaRepository.existsById(bodega.getBodegaId())) {
+        if (bodega == null || bodega.getBodegaId() == null) {
+            return null;
+        }
+        Integer bodegaId = bodega.getBodegaId();
+        if (bodegaId != null && bodegaRepository.existsById(bodegaId)) {
             return bodegaRepository.save(bodega);
         }
         return null;

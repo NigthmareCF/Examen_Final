@@ -20,14 +20,23 @@ public class InventService {
     }
 
     public Optional<EntityInvent> buscarPorId(Integer id) {
+        if (id == null) {
+            return Optional.empty();
+        }
         return inventRepository.findById(id);
     }
 
     public EntityInvent guardar(EntityInvent invent) {
+        if (invent == null) {
+            throw new IllegalArgumentException("Invent no puede ser null");
+        }
         return inventRepository.save(invent);
     }
 
     public void eliminar(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID no puede ser null");
+        }
         inventRepository.deleteById(id);
     }
 }
