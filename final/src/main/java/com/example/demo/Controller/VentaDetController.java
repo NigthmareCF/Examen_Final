@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.DTO.VentaDetDTO;
+import com.example.demo.Entity.EntityProducto;
+import com.example.demo.Entity.EntityVenta;
 import com.example.demo.Entity.EntityVentaDet;
 import com.example.demo.Service.VentaDetService;
 
@@ -114,11 +116,20 @@ public class VentaDetController {
     }
 
     private EntityVentaDet convertirAEntidad(VentaDetDTO dto) {
-        EntityVentaDet entidad = new EntityVentaDet();
-        entidad.setVentaDetalleId(dto.getVentaDetalleId());
-        entidad.setCantidad(dto.getCantidad());
-        entidad.setTotal(dto.getTotal());
+    EntityVentaDet entidad = new EntityVentaDet();
+    entidad.setVentaDetalleId(dto.getVentaDetalleId());
+    entidad.setCantidad(dto.getCantidad());
+    entidad.setTotal(dto.getTotal());
 
-        return entidad;
-    }
+    EntityVenta venta = new EntityVenta();
+    venta.setVentaId(dto.getVentaId());
+    entidad.setVenta(venta);
+
+    EntityProducto producto = new EntityProducto();
+    producto.setProductoId(dto.getProductoId());
+    entidad.setProducto(producto);
+
+    return entidad;
+}
+
 }

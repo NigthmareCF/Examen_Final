@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.DTO.VentaDTO;
 import com.example.demo.DTO.VentaDetDTO;
+import com.example.demo.Entity.EntityCliente;
 import com.example.demo.Entity.EntityVenta;
 import com.example.demo.Entity.EntityVentaDet;
 import com.example.demo.Service.VentaService;
@@ -118,12 +119,18 @@ public class VentaController {
     }
 
     private EntityVenta convertirAEntidad(VentaDTO dto) {
-        EntityVenta entidad = new EntityVenta();
-        entidad.setVentaId(dto.getVentaId());
-        entidad.setFecha(dto.getFecha());
+    EntityVenta entidad = new EntityVenta();
+    entidad.setVentaId(dto.getVentaId());
+    entidad.setFecha(dto.getFecha());
 
-        return entidad;
+    if (dto.getClienteId() != null) {
+        EntityCliente cliente = new EntityCliente();
+        cliente.setClienteId(dto.getClienteId());
+        entidad.setCliente(cliente);
     }
+
+    return entidad;
+}
 
     private VentaDetDTO convertirDetalleADTO(EntityVentaDet detalle) {
         VentaDetDTO dto = new VentaDetDTO();
