@@ -18,6 +18,22 @@ public class StockActService {
         return stockActRepository.findAll();
     }
 
+        public List<EntityStockAct> buscarPorCompraId(Integer compraId) {
+            return stockActRepository.findByCompra_CompraId(compraId);
+        }
+
+        public List<EntityStockAct> buscarPorVentaDetalleId(Integer ventaDetalleId) {
+            return stockActRepository.findByVentaDetalle_VentaDetalleId(ventaDetalleId);
+        }
+
+        public List<EntityStockAct> buscarPorIds(List<Integer> ids) {
+            return stockActRepository.findByStockActIdIn(ids);
+        }
+
+        public List<EntityStockAct> buscarPorProductoId(Integer productoId) {
+            return stockActRepository.findByCompra_Producto_ProductoId(productoId);
+        }
+
     public Optional<EntityStockAct> buscarPorId(Integer id) {
         if (id == null) {
             return Optional.empty();
