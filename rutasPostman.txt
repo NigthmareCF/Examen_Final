@@ -1,0 +1,211 @@
+rutasPostman
+
+
+Nota: cada apartado es por tablas, las rutas ya están listas unicament para ser sustituidas en Postman, adicional están los datos originales 
+insertados en la base de datos local, si gusta replicar se encontraran en el apartado correspondiente, en el formato para Postman
+
+Producto:
+
+GET     http://localhost:8080/api/productos
+GET     http://localhost:8080/api/productos/{id}
+GET     http://localhost:8080/api/productos/buscar?nombre={nombre}
+GET     http://localhost:8080/api/productos/proveedor/{proveedorId}
+GET     http://localhost:8080/api/productos/precio?min={min}&max={max}
+GET     http://localhost:8080/api/productos/mas-vendidos?limite={limite}
+POST    http://localhost:8080/api/productos
+PUT     http://localhost:8080/api/productos/{id}
+DELETE  http://localhost:8080/api/productos/{id}
+
+[
+  {"nombre":"Arroz 1kg","precio":12.50,"idproveedor":1,"presentacion":"Bolsa 1kg","peso":1000},
+  {"nombre":"Frijol 1kg","precio":13.00,"idproveedor":2,"presentacion":"Bolsa 1kg","peso":1000},
+  {"nombre":"Azúcar 2kg","precio":16.75,"idproveedor":3,"presentacion":"Bolsa 2kg","peso":2000},
+  {"nombre":"Sal 1kg","precio":5.25,"idproveedor":4,"presentacion":"Bolsa 1kg","peso":1000},
+  {"nombre":"Aceite 1L","precio":20.00,"idproveedor":5,"presentacion":"Botella 1L","peso":900},
+  {"nombre":"Café 500g","precio":35.50,"idproveedor":6,"presentacion":"Bolsa 500g","peso":500},
+  {"nombre":"Harina 1kg","precio":10.00,"idproveedor":7,"presentacion":"Bolsa 1kg","peso":1000},
+  {"nombre":"Leche 1L","precio":11.25,"idproveedor":8,"presentacion":"Botella 1L","peso":950},
+  {"nombre":"Mantequilla 250g","precio":15.00,"idproveedor":9,"presentacion":"Paquete 250g","peso":250},
+  {"nombre":"Pan Blanco","precio":8.75,"idproveedor":10,"presentacion":"Bolsa 500g","peso":500}
+]
+
+
+Cliente:
+
+GET     http://localhost:8080/api/clientes
+GET     http://localhost:8080/api/clientes/{id}
+GET     http://localhost:8080/api/clientes/buscar?nombre={nombre}
+POST    http://localhost:8080/api/clientes
+PUT     http://localhost:8080/api/clientes/{id}
+DELETE  http://localhost:8080/api/clientes/{id}
+
+[
+  {"nombre": "Juan Pérez", "dpi": 1234567890101, "telefono": 5551234, "nit": "CF12345"},
+  {"nombre": "María López", "dpi": 2345678901212, "telefono": 5555678, "nit": "CF67890"},
+  {"nombre": "Carlos Gómez", "dpi": 3456789012323, "telefono": 5551111, "nit": "CF11122"},
+  {"nombre": "Ana Torres", "dpi": 4567890123434, "telefono": 5552222, "nit": "CF33344"},
+  {"nombre": "Luis Martínez", "dpi": 5678901234545, "telefono": 5553333, "nit": "CF55566"},
+  {"nombre": "Sofía Ramírez", "dpi": 6789012345656, "telefono": 5554444, "nit": "CF77788"},
+  {"nombre": "Pedro Sánchez", "dpi": 7890123456767, "telefono": 5555555, "nit": "CF99900"},
+  {"nombre": "Laura Castro", "dpi": 8901234567878, "telefono": 5556666, "nit": "CF11223"},
+  {"nombre": "Ricardo Díaz", "dpi": 9012345678989, "telefono": 5557777, "nit": "CF33445"},
+  {"nombre": "Patricia Vega", "dpi": 1023456789090, "telefono": 5558888, "nit": "CF55667"}
+]
+
+Proveedor:
+
+GET     http://localhost:8080/api/proveedores
+GET     http://localhost:8080/api/proveedores/{id}
+GET     http://localhost:8080/api/proveedores/buscar?nombre={nombre}
+GET     http://localhost:8080/api/proveedores/telefono/{telefono}
+GET     http://localhost:8080/api/proveedores/activos
+POST    http://localhost:8080/api/proveedores
+PUT     http://localhost:8080/api/proveedores/{id}
+DELETE  http://localhost:8080/api/proveedores/{id}
+
+[
+  {"nombre": "Distribuidora Central", "telefono": 2221111, "direccion": "Zona 1, Guatemala"},
+  {"nombre": "Importadora del Norte", "telefono": 2222222, "direccion": "Zona 4, Guatemala"},
+  {"nombre": "Agroindustrias Maya", "telefono": 2223333, "direccion": "Mixco, Guatemala"},
+  {"nombre": "Suministros Globales", "telefono": 2224444, "direccion": "Villa Nueva, Guatemala"},
+  {"nombre": "Proveedora del Sur", "telefono": 2225555, "direccion": "Amatitlán, Guatemala"},
+  {"nombre": "Comercial San Juan", "telefono": 2226666, "direccion": "Escuintla, Guatemala"},
+  {"nombre": "MegaDistribuciones", "telefono": 2227777, "direccion": "Antigua Guatemala"},
+  {"nombre": "Alimentos Selectos", "telefono": 2228888, "direccion": "Zona 9, Guatemala"},
+  {"nombre": "Suministros Quetzal", "telefono": 2229999, "direccion": "Quetzaltenango"},
+  {"nombre": "Distribuidora El Sol", "telefono": 2230000, "direccion": "Cobán, Alta Verapaz"}
+]
+
+Compra:
+
+GET     http://localhost:8080/api/compras
+GET     http://localhost:8080/api/compras/{id}
+GET     http://localhost:8080/api/compras/proveedor/{proveedorId}
+POST    http://localhost:8080/api/compras
+PUT     http://localhost:8080/api/compras/{id}
+DELETE  http://localhost:8080/api/compras/{id}
+
+[
+  {"idproducto": 1, "cantidad": 50, "precio": 11.00, "total": 550.00},
+  {"idproducto": 2, "cantidad": 60, "precio": 12.50, "total": 750.00},
+  {"idproducto": 3, "cantidad": 30, "precio": 15.00, "total": 450.00},
+  {"idproducto": 4, "cantidad": 40, "precio": 4.50, "total": 180.00},
+  {"idproducto": 5, "cantidad": 25, "precio": 19.00, "total": 475.00},
+  {"idproducto": 6, "cantidad": 15, "precio": 33.00, "total": 495.00},
+  {"idproducto": 7, "cantidad": 35, "precio": 9.50, "total": 332.50},
+  {"idproducto": 8, "cantidad": 45, "precio": 10.75, "total": 483.75},
+  {"idproducto": 9, "cantidad": 20, "precio": 14.00, "total": 280.00},
+  {"idproducto": 10, "cantidad": 25, "precio": 8.25, "total": 206.25}
+]
+
+Venta:
+
+
+GET     http://localhost:8080/api/ventas
+GET     http://localhost:8080/api/ventas/{id}
+GET     http://localhost:8080/api/ventas/cliente/{idCliente}
+POST    http://localhost:8080/api/ventas
+PUT     http://localhost:8080/api/ventas/{id}
+DELETE  http://localhost:8080/api/ventas/{id}
+
+[
+  {"fecha": "2025-11-01T10:00:00", "idcliente": 1},
+  {"fecha": "2025-11-01T11:00:00", "idcliente": 2},
+  {"fecha": "2025-11-02T09:30:00", "idcliente": 3},
+  {"fecha": "2025-11-02T14:20:00", "idcliente": 4},
+  {"fecha": "2025-11-03T16:45:00", "idcliente": 5},
+  {"fecha": "2025-11-03T17:00:00", "idcliente": 6},
+  {"fecha": "2025-11-04T09:15:00", "idcliente": 7},
+  {"fecha": "2025-11-04T10:50:00", "idcliente": 8},
+  {"fecha": "2025-11-05T12:10:00", "idcliente": 9},
+  {"fecha": "2025-11-05T13:00:00", "idcliente": 10}
+]
+
+VentaDet:
+
+GET     http://localhost:8080/api/ventadet
+GET     http://localhost:8080/api/ventadet/{id}
+GET     http://localhost:8080/api/ventadet/venta/{idVenta}
+POST    http://localhost:8080/api/ventadet
+PUT     http://localhost:8080/api/ventadet/{id}
+DELETE  http://localhost:8080/api/ventadet/{id}
+
+[
+  {"idventa": 1, "idproducto": 1, "cantidad": 2, "total": 25.00},
+  {"idventa": 1, "idproducto": 5, "cantidad": 1, "total": 20.00},
+  {"idventa": 2, "idproducto": 2, "cantidad": 3, "total": 39.00},
+  {"idventa": 3, "idproducto": 4, "cantidad": 2, "total": 10.50},
+  {"idventa": 4, "idproducto": 6, "cantidad": 1, "total": 35.50},
+  {"idventa": 5, "idproducto": 3, "cantidad": 2, "total": 33.50},
+  {"idventa": 6, "idproducto": 8, "cantidad": 3, "total": 33.75},
+  {"idventa": 7, "idproducto": 7, "cantidad": 1, "total": 10.00},
+  {"idventa": 8, "idproducto": 9, "cantidad": 4, "total": 60.00},
+  {"idventa": 9, "idproducto": 10, "cantidad": 5, "total": 43.75}
+]
+
+StockAct:
+
+GET     http://localhost:8080/api/stockact
+GET     http://localhost:8080/api/stockact/{id}
+POST    http://localhost:8080/api/stockact
+PUT     http://localhost:8080/api/stockact/{id}
+DELETE  http://localhost:8080/api/stockact/{id}
+
+[
+  {"idcompra": 1, "cantcomp": 50, "idventadeta": 1, "cantvent": 2},
+  {"idcompra": 2, "cantcomp": 60, "idventadeta": 2, "cantvent": 3},
+  {"idcompra": 3, "cantcomp": 30, "idventadeta": 3, "cantvent": 2},
+  {"idcompra": 4, "cantcomp": 40, "idventadeta": 4, "cantvent": 2},
+  {"idcompra": 5, "cantcomp": 25, "idventadeta": 5, "cantvent": 1},
+  {"idcompra": 6, "cantcomp": 15, "idventadeta": 6, "cantvent": 2},
+  {"idcompra": 7, "cantcomp": 35, "idventadeta": 7, "cantvent": 3},
+  {"idcompra": 8, "cantcomp": 45, "idventadeta": 8, "cantvent": 1},
+  {"idcompra": 9, "cantcomp": 20, "idventadeta": 9, "cantvent": 4},
+  {"idcompra": 10, "cantcomp": 25, "idventadeta": 10, "cantvent": 5}
+]
+
+Bodega:
+
+GET     http://localhost:8080/api/bodegas
+GET     http://localhost:8080/api/bodegas/{id}
+POST    http://localhost:8080/api/bodegas
+PUT     http://localhost:8080/api/bodegas/{id}
+DELETE  http://localhost:8080/api/bodegas/{id}
+
+[
+  {"idproducto": 1, "stockmin": 10, "stockmax": 100},
+  {"idproducto": 2, "stockmin": 15, "stockmax": 120},
+  {"idproducto": 3, "stockmin": 20, "stockmax": 150},
+  {"idproducto": 4, "stockmin": 10, "stockmax": 90},
+  {"idproducto": 5, "stockmin": 10, "stockmax": 80},
+  {"idproducto": 6, "stockmin": 5, "stockmax": 60},
+  {"idproducto": 7, "stockmin": 10, "stockmax": 100},
+  {"idproducto": 8, "stockmin": 10, "stockmax": 100},
+  {"idproducto": 9, "stockmin": 10, "stockmax": 70},
+  {"idproducto": 10, "stockmin": 10, "stockmax": 90}
+]
+
+
+Invent:
+
+GET     http://localhost:8080/api/invent
+GET     http://localhost:8080/api/invent/{id}
+POST    http://localhost:8080/api/invent
+PUT     http://localhost:8080/api/invent/{id}
+DELETE  http://localhost:8080/api/invent/{id}
+
+[
+  {"idstockact": 1, "idbodega": 1},
+  {"idstockact": 2, "idbodega": 2},
+  {"idstockact": 3, "idbodega": 3},
+  {"idstockact": 4, "idbodega": 4},
+  {"idstockact": 5, "idbodega": 5},
+  {"idstockact": 6, "idbodega": 6},
+  {"idstockact": 7, "idbodega": 7},
+  {"idstockact": 8, "idbodega": 8},
+  {"idstockact": 9, "idbodega": 9},
+  {"idstockact": 10, "idbodega": 10}
+]
+
+
+
